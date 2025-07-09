@@ -19,15 +19,20 @@ def main():
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-        key_lst = pg.key.get_pressed()  # キーの押下状態を取得
+        
+        move = pg.Vector2(-1, 0)
+
+        key_lst  = pg.key.get_pressed()  # キーの押下状態を取得
+
         if key_lst[pg.K_UP]:  # 上キーが押されたら
             kk_rct.move_ip(0, -1)  # 上に移動
         if key_lst[pg.K_DOWN]:
             kk_rct.move_ip(0, +1)
-        if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip(-1, 0)
         if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip(+1, 0)
+            kk_rct.move_ip(2, 0)
+
+        kk_rct.move_ip(move)
+        kk_rct.clamp_ip(screen.get_rect())
 
         x = tmr%3200
         screen.blit(bg_img, [-x, 0])  # 1枚目
@@ -38,7 +43,7 @@ def main():
         pg.display.update()
         # print(tmr, x)
         tmr += 1        
-        clock.tick(200)
+        clock.tick(60)
 
 
 if __name__ == "__main__":

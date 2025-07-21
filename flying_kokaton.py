@@ -24,13 +24,13 @@ def main():
 
         key_lst  = pg.key.get_pressed()  # キーの押下状態を取得
 
-        if key_lst[pg.K_UP]:  # 上キーが押されたら
+        if key_lst[pg.K_UP]:
             move.y = -1
-        if key_lst[pg.K_DOWN]:
+        elif key_lst[pg.K_DOWN]:
             move.y = +1
-        if key_lst[pg.K_RIGHT]:
-            move.x = 0  # 背景と打ち消し合って静止するように
 
+        if key_lst[pg.K_RIGHT]:
+            move.x = 2  # 背景と相殺して静止
 
         kk_rct.move_ip(move)
         kk_rct.clamp_ip(screen.get_rect())
